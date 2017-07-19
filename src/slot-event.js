@@ -44,11 +44,24 @@
                 }
 
                 table += '</tr></thead>';
+
+                table += '<tbody>';
+
+                for (var j = 1; j <= scope.options.capacity; j++) {
+                    table += '<tr>';
+                    for (var k = 0; k < 60; k+= scope.options.interval) {
+                        var cell = scope.options.start + '-' + k + '-' + j;
+						table += '<td data-slot="' + cell + '" class="success cell ' + cell + '" style="cursor: pointer;">&nbsp;</td>';
+                    }
+                    table += '</tr>';
+                }
+
+                table += '</tbody></table>';
             }
         };
 
         function padDigits(number, digits) {
-            return [Math.max(digits - String(number).length + 1, 0)].join(0) + number;
+            return [Math.max(digits - String(number).length + 1, 0)].join('') + number;
         }
         function getAmPm(val) {
             if(val >= 12) {
